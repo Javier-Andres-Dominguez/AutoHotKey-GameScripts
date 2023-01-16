@@ -1,5 +1,5 @@
-﻿;This script is used on shooter games, when you have a Semi weapon you convert it to Full-Auto with this script. While you are pressing Click it sends multiple clicks until you stop.
-;Controls: F1 (Exits the script), F2 (Suspends the script (disables hotkeys))
+﻿;This script is pretty simple, it´s only function is to change a semi weapon to auto.
+
 $LButton::
 While GetKeyState("LButton","P")
 {

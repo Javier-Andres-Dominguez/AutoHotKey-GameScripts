@@ -1,49 +1,59 @@
-﻿;This script is used to slow down the FireSpeed of DSR-50 from the game Call of Duty Black Ops 2 to replicate the same Firespeed of Oerator from the game VALORANT.
-;The controls are: F1 (Exits the script), F2 (Suspends the script (hotkeys disabled)), 2 (Tells the program that you are changing the weapon, to activate/desactivate the custon FireSpeed)
-Scoping := 0
+﻿;This script is used in the game CoD Black Ops 2, with the weapon DSR-50. The script slows down the fire rate to make it shoot as fast as the weapon "Operator" from the game VALORANT. In the configuration you need to have ADS Togle, not while pressing.
 
-$RButton::
-if(Scoping = 0){
-	Send {RButton}
-	Send {c down}
+OperatorEquiped := 1 ;Operator equiped
+Scoping := 0 ;Is scoping?
+
+$LButton:: ;Shoot-->If you were scoping-->Stop and change value to 2 for not being able to scope/shoot for 1.75s
+Send {LButton}
+if(OperatorEquiped){
+	if(Scoping){
+		Send {RButton} ;Stop scoping
+		Send {c up} ;Hold breath
+		Scoping := 2 ;Change value to not be able to scope
+		Sleep 1750
+		Scoping := 0 ;Change value to be able to scope again
+		return
+	}else{
+		Sleep 1750
+	}
+}
+return
+
+$RButton:: ;Scope-->If you were scoping stop it, else start scoping
+if(!Scoping){
+	Send {RButton} ;Scope
+	Send {c down} ;"C" is the key where I have hold breath
 	Scoping := 1
 	return
-}
-if(Scoping = 1){
-	Send {RButton}
-	Send {c up}
+}else{
+	Send {RButton} ;Stop Scoping
+	Send {c up} ;Stop holding breath to recharge
 	Scoping := 0
 	return
 }
-return
 
-$2::
+$2:: ;2 Is used to change the weapon. When pressed you don´t have operator equiped no more and you can´t be Scoping.
 Send {2}
-if (Scoping = 1){
-	Send {c up}
-	Scoping := 0
+Scoping := 0 ;You can´t scope while changing weapon
+if(OperatorEquiped){
+	OperatorEquiped := 0
 	return
+}else{
+	OperatorEquiped := 1
 }
-
 return
 
-$r::
+$f:: ;F is pressed to respawn, and you always respawn with the primary weapon (Operator) equiped.
+OperatorEquiped := 1
+Scoping := 0
+return
+
+$r:: ;r Is used to reload the weapon. When pressed you can´t be Scoping.
 Send {r}
-if(Scoping = 1){
+if(Scoping){
 	Send {c up}
 	Scoping := 0
 	return
-}
-return
-
-$LButton::
-Send {LButton}
-if(Scoping = 1){
-	Send {RButton}
-	Send {c up}
-	Scoping := 2
-	Sleep 1750
-	Scoping := 0
 }
 return
 

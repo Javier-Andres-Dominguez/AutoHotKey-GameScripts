@@ -1,5 +1,5 @@
-﻿;This script is used for shooter games, when you shoot (Click) it send Ctrl to crouch while you are shooting
-;Controls: F1 (Exits the script), F2 (Suspends the script (disables hotkeys))
+﻿;This script can be used in any game, it is pretty simple. It´s only function is to crouch when you are shooting.
+
 $LButton::
 While GetKeyState("LButton","P")
 {
