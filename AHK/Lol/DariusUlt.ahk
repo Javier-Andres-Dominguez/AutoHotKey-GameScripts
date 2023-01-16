@@ -1,7 +1,8 @@
-﻿;This script is used in the game League of Legends with the champion: "Darius",it has an interface where you input the extra AD that Darius has to calculate the damages that your ultimate can cause
-;Controls: Closing the interface(Exits the script)
+﻿;This script is used in the game League of Leguends with the champion "Darius". It calculates de damage of you ultimate based on your extra AD.
+
 PassiveAd := [55,60,65,70,75,85,95,105,130,155,180,205,230]
 
+;Interface
 Gui, Add, Text, x140 y0, Imput your aditional AD:
 Gui, Add, Text, x0 y35 w70 , 0 Stacks:
 Gui, Add, Text, x0 y60 w70 , 1 Stack:
@@ -23,7 +24,7 @@ Gui, Show, h250 w370, NOXUUUUUUUUUUUUUUUUUUUUUS
 
 return
 
-calculate:
+calculate:													;Calculates the dmg on all passive stacks possible
 {
 	GuiControlGet, LevelChoice
 	GuiControlGet, Ad
@@ -78,7 +79,3 @@ return
 
 GuiClose:
 ExitApp
-
-;125|250|375
-;133--159--186--212--239--348
-;55--60--65--70--75--85--95--105--130--155--180--205--230

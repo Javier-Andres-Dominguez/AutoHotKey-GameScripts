@@ -1,5 +1,6 @@
-﻿;This script is used in the game League of Legends with the champion: "Garen",it has an interface where you input the enemy maximum HP to maximizate your ult HP execution
-;Controls: Closing the interface(Exits the script)
+﻿;This script is used in the game League of Leguends with the champion "Garen". It calculates de damage of you ultimate based on enemy max HP.
+
+;Interface
 Gui, Add, Text, x140 y0, Imput enemy max Hp:
 Gui, Add, Text, x25 y25,Top
 Gui, Add, Edit, x0 y40 h20 w70 vC1Hp,
@@ -26,12 +27,13 @@ Gui, Add, Edit, x300 y40 h20 w70 vC5Hp,
 Gui, Add, Text, x300 y90 w70 vResult1TextC5,
 Gui, Add, Text, x300 y140 w70 vResult2TextC5,
 Gui, Add, Text, x300 y190 w70 vResult3TextC5,
+
 Gui, Add, Button, x150 y210 h20 w70 gcalculate, Calculate
 Gui, Show, h250 w370, DEMACIAAAAAAAAAAAAAAAAAAAA
 
 return
 
-calculate:
+calculate:																	;Calculates the highest amount of enemy HP that can have and be executed with your ultimate
 {
 	GuiControlGet, C1Hp
 	GuiControlGet, C2Hp
@@ -71,5 +73,5 @@ calculate:
 }
 return
 
-GuiClose:
+GuiClose:																	;Exits the script
 ExitApp
