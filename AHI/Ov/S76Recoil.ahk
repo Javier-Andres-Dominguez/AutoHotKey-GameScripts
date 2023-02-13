@@ -21,7 +21,7 @@ moveDown(){
         AHI.Instance.SendMouseMoveRelative(mouseId, 0, mouseDistance)
         mouseLoop += 15
         sleep, 1
-        if(mouseLoop >= 340){
+        if(mouseLoop >= 400){
             mouseDistance := 4
         }
     }
