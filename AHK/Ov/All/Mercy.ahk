@@ -8,10 +8,10 @@ stdout := FileOpen("*", "w")
 
 Gui, Add, Text, 	x110 y0, 								Status
 Gui, Font, s60
-Gui, Add, Text, 	x95 y190 	h80 w70	vM8,				O
+Gui, Add, Text, 	x100 y190 	h80 w70	vM8,						O
 Gui, Font, s15
-Gui, Add, Text, 	x80 y440 	h20 w100	vLastHpColor,	Last Hp Color
-Gui, Show, 			x5760 y550	h500 w250, 					Mercy Better Controller
+Gui, Add, Text, 	x80 y440 	h20 w100	vLastHpColor,				Last Hp Color
+Gui, Show, 		x5760 y550	h500 w250, 						Mercy Better Controller
 Suspend
 GuiControl,, LastHpColor, 	Suspended
 return
@@ -56,7 +56,7 @@ Loop{
 	}
 }Until (!GetKeyState("LButton", "P"))
 Send {q Up}
-GuiControl,, M8, 	x
+GuiControl,, M8, 	X
 GuiControl,, LastHpColor, 	Last Hp Color
 /*Loop{
 	stdout.Write("❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌`n")
