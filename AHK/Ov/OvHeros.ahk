@@ -104,8 +104,7 @@ StopAllScriptsAndStartZumper()
 return
 RoadhogBtn:
 GuiControl,, MyHeroPct, %Path%%Roadhog%
-StopAllScripts()
-Run, %SPath%Roadhog.ahk
+StopAllScriptsAndStartZumper()
 return
 SigmaBtn:
 GuiControl,, MyHeroPct, %Path%%Sigma%

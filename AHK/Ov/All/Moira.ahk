@@ -28,17 +28,6 @@ while(GetKeyState("c","P")){
 }
 return
 
-$e::
-while(GetKeyState("e","P")){
-	Send {e}
-	Sleep 50
-	if(GetKeyState("Space", "P")){
-		Send {Space}
-		Sleep 25
-	}
-}
-return
-
 $NumpadEnter::
 Send {Esc}
 MouseMove, 1850, 1250

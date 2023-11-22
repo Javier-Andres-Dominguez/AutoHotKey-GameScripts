@@ -81,6 +81,10 @@ MouseMove, 2050, 1225
 Click
 return
 
+$F2::
+Suspend
+return
+
 $F3::
 Reload
 return
