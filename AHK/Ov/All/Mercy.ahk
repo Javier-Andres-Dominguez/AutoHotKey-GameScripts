@@ -57,7 +57,7 @@ Loop{
 }Until (!GetKeyState("LButton", "P"))
 Send {q Up}
 GuiControl,, M8, 	X
-GuiControl,, LastHpColor, 	Last Hp Color
+GuiControl,, LastHpColor, 	Active
 /*Loop{
 	stdout.Write("❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌`n")
 	i+=1
