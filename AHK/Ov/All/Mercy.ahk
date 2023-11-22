@@ -88,6 +88,9 @@ Click
 Sleep 100
 MouseMove, 2075, 1215
 Click
+State := false
+GuiControl,, LastHpColor, 	Suspended
+Suspend
 return
 
 $Enter::
