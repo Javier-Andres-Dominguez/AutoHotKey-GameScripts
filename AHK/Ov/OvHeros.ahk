@@ -1,7 +1,7 @@
 Path := "C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\Imgs\"
 SPath := "C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\"
 
-Dva := "Dva.png", Doomfist := "Doomfist.png", JunkerQueen := "JunkerQueen.png", Orisa := "Orisa.png", Ramattra := "Ramattra.png", Reinhardt := "Reinhardt.png",
+Dva := "Dva.png", Doomfist := "Doomfist.png", JunkerQueen := "JunkerQueen.png", Mauga := "Mauga.png", Orisa := "Orisa.png", Ramattra := "Ramattra.png", Reinhardt := "Reinhardt.png",
 				Roadhog := "Roadhog.png", Sigma := "Sigma.png", Winston := "Winston.png", WreckingBall := "WreckingBall.png", Zarya := "Zarya.png"
 
 Ashe := "Ashe.png", Bastion := "Bastion.png", Cassidy := "Cassidy.png", Echo := "Echo.png", Genji := "Genji.png", Hanzo := "Hanzo.png",
@@ -15,16 +15,17 @@ Gui, Add, Text, 	x550 y0, 								Select Your Hero
 Gui, Add, Picture, 	vMyHeroPct 		x550 y100 	w100 h100
 Gui, Add, Picture, 	vDvaPct 		x50 y300 	w50 h50		gDvaBtn,			%Path%%Dva%
 Gui, Add, Picture, 	vDoomfistPct 	x100 y300 	w50 h50		gDoomfistBtn, 		%Path%%Doomfist%
-Gui, Add, Picture, 	vJunkerQueen 	x150 y300 	w50 h50		gJunkerQueenBtn, 	%Path%%JunkerQueen%
-Gui, Add, Picture, 	vOrisa 			x200 y300 	w50 h50		gOrisaBtn, 			%Path%%Orisa%
-Gui, Add, Picture, 	vRamattra 		x250 y300 	w50 h50		gRamattraBtn, 		%Path%%Ramattra%
-Gui, Add, Picture, 	vReinhardt 		x300 y300 	w50 h50		gReinhardtBtn, 		%Path%%Reinhardt%
+Gui, Add, Picture, 	vJunkerQueenPct x150 y300 	w50 h50		gJunkerQueenBtn, 	%Path%%JunkerQueen%
+Gui, Add, Picture, 	vMaugaPct       x200 y300 	w50 h50		gMaugaBtn, 	        %Path%%Mauga%
+Gui, Add, Picture, 	vOrisaPct 		x250 y300 	w50 h50		gOrisaBtn, 			%Path%%Orisa%
+Gui, Add, Picture, 	vRamattraPct	x300 y300 	w50 h50		gRamattraBtn, 		%Path%%Ramattra%
 
-Gui, Add, Picture, 	vRoadhog 		x100 y350 	w50 h50		gRoadhogBtn, 		%Path%%Roadhog%
-Gui, Add, Picture, 	vSigma 			x150 y350 	w50 h50		gSigmaBtn, 			%Path%%Sigma%
-Gui, Add, Picture, 	vWinston 		x200 y350 	w50 h50		gWinstonBtn, 		%Path%%Winston%
-Gui, Add, Picture, 	vWreckingBall 	x250 y350 	w50 h50		gWreckingBallBtn, 	%Path%%WreckingBall%
-Gui, Add, Picture, 	vZarya 			x300 y350 	w50 h50		gZaryaBtn, 			%Path%%Zarya%
+Gui, Add, Picture, 	vReinhardtPct 	x50 y350 	w50 h50		gReinhardtBtn, 		%Path%%Reinhardt%
+Gui, Add, Picture, 	vRoadhogPct 	x100 y350 	w50 h50		gRoadhogBtn, 		%Path%%Roadhog%
+Gui, Add, Picture, 	vSigmaPct		x150 y350 	w50 h50		gSigmaBtn, 			%Path%%Sigma%
+Gui, Add, Picture, 	vWinstonPct 	x200 y350 	w50 h50		gWinstonBtn, 		%Path%%Winston%
+Gui, Add, Picture, 	vWreckingBallPct x250 y350 	w50 h50		gWreckingBallBtn, 	%Path%%WreckingBall%
+Gui, Add, Picture, 	vZaryaPct 		x300 y350 	w50 h50		gZaryaBtn, 			%Path%%Zarya%
 
 Gui, Add, Picture, 	vAshePct 		x400 y300 	w50 h50		gAsheBtn, 			%Path%%Ashe%
 Gui, Add, Picture, 	vBastionPct 	x450 y300 	w50 h50		gBastionBtn, 		%Path%%Bastion%
@@ -88,6 +89,10 @@ Run, %SPath%Doomfist.ahk
 return
 JunkerQueenBtn:
 GuiControl,, MyHeroPct, %Path%%JunkerQueen%
+StopAllScriptsAndStartZumper()
+return
+MaugaBtn:
+GuiControl,, MyHeroPct, %Path%%Mauga%
 StopAllScriptsAndStartZumper()
 return
 OrisaBtn:
