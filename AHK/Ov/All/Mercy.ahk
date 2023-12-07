@@ -7,13 +7,13 @@ Green := "F"
 stdout := FileOpen("*", "w")
 
 Gui, Add, Text, 	x110 y0, 								Status
-Gui, Font, s60
-Gui, Add, Text, 	x100 y190 	h80 w70	vM8,						O
+Gui, Font, s40
+Gui, Add, Text, 	x0 y190 	h80 w250	vLastHpColor,	Hp Color
 Gui, Font, s15
-Gui, Add, Text, 	x80 y440 	h20 w100	vLastHpColor,				Last Hp Color
-Gui, Show, 		x5760 y550	h500 w250, 						Mercy Better Controller
+Gui, Add, Text, 	x80 y440 	h20 w100	vM8,				O
+Gui, Show, 			x5760 y550	h500 w250, 					Mercy Better Controller
 Suspend
-GuiControl,, LastHpColor, 	Suspended
+GuiControl,, M8, 	Suspended
 return
 
 $+LButton::
@@ -29,7 +29,7 @@ Loop{
 	*/
 }
 Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)
-Send {q Down}
+;Send {q Down}
 GuiControl,, M8,	O
 /*i := 0
 Loop{
@@ -57,7 +57,7 @@ Loop{
 }Until (!GetKeyState("LButton", "P"))
 Send {q Up}
 GuiControl,, M8, 	X
-GuiControl,, LastHpColor, 	Active
+GuiControl,, M8, 	Active
 /*Loop{
 	stdout.Write("❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌`n")
 	i+=1
@@ -89,7 +89,7 @@ Sleep 100
 MouseMove, 2075, 1215
 Click
 State := false
-GuiControl,, LastHpColor, 	Suspended
+GuiControl,, M8, 	Suspended
 Suspend
 return
 
@@ -109,10 +109,10 @@ $f2::
 Suspend
 if(State){
 	State := false
-	GuiControl,, LastHpColor, 	Suspended
+	GuiControl,, M8, 	Suspended
 }else{
 	State := true
-	GuiControl,, LastHpColor, 	Active
+	GuiControl,, M8, 	Active
 }
 return
 
