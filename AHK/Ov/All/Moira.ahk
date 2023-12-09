@@ -1,3 +1,36 @@
+#SingleInstance force
+#Persistent
+#include <AutoHotInterception>
+
+global AHI := new AutoHotInterception()
+global mouseId := AHI.GetMouseId(0x093A, 0x2532)
+stdout := FileOpen("*", "w")
+AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
+AHI.SubscribeMouseButton(mouseId, 3, true, Func("LateralClic"), true)
+return
+
+LateralClick(state){
+    if(state){
+		Send {XButton2, down}
+		AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
+		Click
+		AHI.Instance.SendMouseMoveRelative(mouseId, 0, -4500)
+    }else{
+        Send {XButton2, up}
+    }
+}
+
+LateralClic(state){
+    if(state){
+		Send {XButton2, down}
+		AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
+		Click, Right
+		AHI.Instance.SendMouseMoveRelative(mouseId, 0, -4500)
+    }else{
+        Send {XButton2, up}
+    }
+}
+
 $+Space::
 $Space::
 while(GetKeyState("Space","P")){
