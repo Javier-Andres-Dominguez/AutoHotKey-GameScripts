@@ -6,6 +6,7 @@ Orange := "FF"
 Green := "F"
 stdout := FileOpen("*", "w")
 
+;Interface
 Gui, Add, Text, 	x110 y0, 								Status
 Gui, Font, s40
 Gui, Add, Text, 	x0 y190 	h80 w250	vLastHpColor,	Hp Color
@@ -20,67 +21,35 @@ $+LButton::
 $^LButton::
 $LButton::
 Send {LButton Down}
-Loop{
+Loop{	;Scan in the screen until you vinculate to an Ally
 	PixelGetColor firstHpColor, 1852, 1430
-	/*stdout.Write("FIRST HP COLOR: ")
-	stdout.Write(SubStr(firstHpColor, 1, 3))
-	stdout.Write("`n")
-	stdout.Read()
-	*/
 }
-Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)
-;Send {q Down}
+Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)	;Bastion is weird, he has his own hp color
 GuiControl,, M8,	O
-/*i := 0
-Loop{
-	stdout.Write("✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔✔️✔️✔✔️✔️✔️✔️✔️✔️✔️✔️✔✔️✔️✔️✔️✔️✔✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔✔️✔️✔️✔️✔️✔✔✔✔️✔✔️✔✔️`n")
-	i+=1
-}
-Until i==50
-stdout.Read()
-i := 0
-*/
-Loop{
+
+;When you alredy got his hp in the middle of the screen then:
+
+Loop{	;Scan all the time his last hp color and if he is antihealed
 	PixelGetColor antiHeal, 1905, 1467
 	PixelGetColor lastHpColor, 1978, 1430
 	GuiControl,, LastHpColor, 	%lastHpColor%
-	/*stdout.Write("LAST HP COLOR: ")
-	stdout.Write(lastHpColor)
-	stdout.Write("`n")
-	stdout.Read()
-	*/
-	if(antiHeal==White || lastHpColor==White || SubStr(lastHpColor, 1, 5)==Blue || SubStr(lastHpColor, 7, 8)==Orange || SubStr(lastHpColor, 5, 1)==Green){
+
+	if(antiHeal==White || lastHpColor==White || SubStr(lastHpColor, 1, 5)==Blue || SubStr(lastHpColor, 7, 8)==Orange || SubStr(lastHpColor, 5, 1)==Green){	;If he is full hp:
 		Send {RButton Down}
-	}else{
+	}else{	;If he isn´t full hp:
 		Send {RButton Up}
 	}
-}Until (!GetKeyState("LButton", "P"))
-Send {q Up}
+}Until (!GetKeyState("LButton", "P"))	;In case you stop pressing Left click:
+Send {LButton Up}
 GuiControl,, M8, 	X
 GuiControl,, M8, 	Active
-/*Loop{
-	stdout.Write("❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌`n")
-	i+=1
-}
-Until i==50
-stdout.Read()
-i := 0
-*/
-Send {LButton Up}
-if(!GetKeyState("RButton", "P")){
+
+if(!GetKeyState("RButton", "P")){	;If you weren´t manually pressing Right Click:
 	Send {RButton Up}
 }
 return
-/*
-$XButton1::
-Send {Enter}
-Sleep 10
-Send Get me from spawn
-Send {Enter}
-return
-*/
 
-$NumpadEnter::
+$NumpadEnter::	;Get out of the game
 Send {Esc}
 Sleep 100
 MouseMove, 1850, 1250
@@ -93,19 +62,17 @@ GuiControl,, M8, 	Suspended
 Suspend
 return
 
-$Enter::
+$Enter::	;Don´t type in this game, it´s not worth it
 return
 
-$RShift::
+$RShift::	;Instalock Mercy
 while(GetKeyState("RShift", "P")){
 	MouseMove, 3100, 1800
-	/*MouseMove, 3100, 1700
-	*/
 	Send {LButton}
 }
 return
 
-$f2::
+$f2::	;Suspend
 Suspend
 if(State){
 	State := false
@@ -116,11 +83,11 @@ if(State){
 }
 return
 
-$f3::
+$f3::	;Reload
 Reload
 return
 
-$f1::
+$f1::	;Close
 ExitApp
 
 GuiClose:
