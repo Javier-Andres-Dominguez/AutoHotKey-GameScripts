@@ -49,6 +49,16 @@ if(!GetKeyState("RButton", "P")){	;If you weren´t manually pressing Right Click
 }
 return
 
+$Enter::	;Don´t type in this game, it´s not worth it
+return
+
+$RShift::	;Instalock Mercy
+while(GetKeyState("RShift", "P")){
+	MouseMove, 3100, 1800
+	Send {LButton}
+}
+return
+
 $NumpadEnter::	;Get out of the game
 Send {Esc}
 Sleep 100
@@ -62,14 +72,8 @@ GuiControl,, M8, 	Suspended
 Suspend
 return
 
-$Enter::	;Don´t type in this game, it´s not worth it
-return
-
-$RShift::	;Instalock Mercy
-while(GetKeyState("RShift", "P")){
-	MouseMove, 3100, 1800
-	Send {LButton}
-}
+$f3::	;Reload
+Reload
 return
 
 $f2::	;Suspend
@@ -81,10 +85,6 @@ if(State){
 	State := true
 	GuiControl,, M8, 	Active
 }
-return
-
-$f3::	;Reload
-Reload
 return
 
 $f1::	;Close

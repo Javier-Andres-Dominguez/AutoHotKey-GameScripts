@@ -1,4 +1,8 @@
-chatting := false
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Junkrat
+return
 
 $RButton::
 while(GetKeyState("RButton","P")){
@@ -11,64 +15,45 @@ while(GetKeyState("RButton","P")){
 return
 
 $Space::
-if(!chatting){
-	while(GetKeyState("Space","P")){
-		Send {Space}
-		Sleep 50
-		if(GetKeyState("V", "P")){
-			Send {v}
-		}
-		if(GetKeyState("C", "P")){
-			Send {c}
-		}
+while(GetKeyState("Space","P")){
+	Send {Space}
+	Sleep 50
+	if(GetKeyState("V", "P")){
+		Send {v}
 	}
-}else{
-	send {Space}
+	if(GetKeyState("C", "P")){
+		Send {c}
+	}
 }
 return
 
 $c::
-if(!chatting){
-	while(GetKeyState("C","P")){
-		Send {c}
-		sleep 25
-		if(GetKeyState("Space", "P")){
-			Send {Space}
-		}
+while(GetKeyState("C","P")){
+	Send {c}
+	sleep 25
+	if(GetKeyState("Space", "P")){
+		Send {Space}
 	}
-}else{
-	send {c}
 }
 return
 
 $v::
-if(!chatting){
-	while(GetKeyState("V","P")){
-		Send {v}
-		sleep 25
-		if(GetKeyState("Space", "P")){
-			Send {Space}
-		}
+while(GetKeyState("V","P")){
+	Send {v}
+	sleep 25
+	if(GetKeyState("Space", "P")){
+		send {Space}
 	}
-}else{
-	send {v}
 }
 return
 
 $Enter::
-Send {Enter}
-if(chatting){
-	chatting := false
-	return
-}else{
-	chatting := true
-	return
-}
+return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-		MouseMove, 2250, 1700
-		Send {LButton}
+	MouseMove, 2250, 1650
+	Send {LButton}
 }
 return
 
@@ -81,13 +66,19 @@ MouseMove, 2050, 1225
 Click
 return
 
-$esc::
-send {esc}
-chatting := false
+$F3::
+Reload
 return
 
-$f2::
+$F2::
 Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $f1::

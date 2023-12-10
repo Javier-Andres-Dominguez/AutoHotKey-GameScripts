@@ -1,8 +1,12 @@
-chatting := false
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Zenyatta
+return
 
 $LButton::
 Send {LButton Down}
-Loop{
+While(GetKeyState("LButton","P")){
 	If(GetKeyState("XButton2", "P")){
 		Send {q}
 	}
@@ -11,7 +15,6 @@ Loop{
 		Send {space}
 	}
 }
-Until (!GetKeyState("LButton", "P"))
 Send {LButton Up}
 return
 
@@ -20,73 +23,41 @@ Send {q}
 Send {MButton}
 return
 
-$NumpadEnter::
-Send {Esc}
-MouseMove, 1850, 1250
-Click
-Sleep 100
-MouseMove, 2050, 1225
-Click
+$Enter::
 return
 
-$e::
-if(!chatting){
-	while(GetKeyState("e","P")){
-		Send {e}
-		Sleep 100
-		if(GetKeyState("Space", "P")){
-			Send {space}
-		}
-		Sleep 100
+$c::
+while(GetKeyState("c","P")){
+	Send {c}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
 	}
-}else{
-	Send {e}
+}
+return
+
+$v::
+while(GetKeyState("v","P")){
+	Send {v}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
 }
 return
 
 $Space::
-if(!chatting){
-	while(GetKeyState("Space","P")){
-		Send {Space}
-		Sleep 25
-		if(GetKeyState("V", "P")){
-			Send {v}
-		}
-		if(GetKeyState("C", "P")){
-			Send {c}
-		}
-		if(GetKeyState("E", "P")){
-			Send {e}
-		}
-		if(GetKeyState("XButton2", "P")){
-			Send {e}
-		}
+while(GetKeyState("Space","P")){
+	Send {Space}
+	Sleep 25
+	if(GetKeyState("V", "P")){
+		Send {v}
 	}
-}else{
-	send {Space}
-}
-return
-
-$Enter::
-Send {Enter}
-if(chatting){
-	chatting := false
-	return
-}else{
-	chatting := true
-	return
-}
-
-$c::
-if(chatting){
-	Send {c}
-}else{
-	while(GetKeyState("c","P")){
+	if(GetKeyState("C", "P")){
 		Send {c}
-		Sleep 50
-		if(GetKeyState("Space", "P")){
-			Send {Space}
-		}
+	}
+	if(GetKeyState("E", "P")){
+		Send {e}
 	}
 }
 return
@@ -98,13 +69,28 @@ while(GetKeyState("RShift", "P")){
 }
 return
 
-$esc::
-send {esc}
-chatting := false
+$NumpadEnter::
+Send {Esc}
+MouseMove, 1850, 1250
+Click
+Sleep 100
+MouseMove, 2050, 1225
+Click
 return
 
-$f2::
+$F3::
+Reload
+return
+
+$F2::
 Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $f1::

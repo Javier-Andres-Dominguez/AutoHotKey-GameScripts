@@ -1,29 +1,40 @@
 State := false
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Genji
+Gui, Show, 			x5760 y550	h250 w250, 					Tracer
 return
 
-$x::
-Send {c}
-Send {x}
+$c::
+while(GetKeyState("c","P")){
+	Send {c}
+	Sleep 50
+}
 return
 
-$q::
-Send {RButton}
-Send {q}
+$v::
+while(GetKeyState("v","P")){
+	Send {v}
+	Sleep 50
+}
 return
 
-$e::
-Send {RButton}
-Send {e}
-Sleep 50
+$Space::
+while(GetKeyState("Space","P")){
+	Send {Space}
+	Sleep 50
+	if(GetKeyState("V", "P")){
+		Send {v}
+	}
+	if(GetKeyState("C", "P")){
+		Send {c}
+	}
+}
 return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-    MouseMove, 1980, 1650
-    Send {LButton}
+	MouseMove, 2300, 1800
+	Send {LButton}
 }
 return
 
@@ -32,11 +43,8 @@ Send {Esc}
 MouseMove, 1850, 1250
 Click
 Sleep 100
-MouseMove, 2050, 1225
+MouseMove, 2225, 1225
 Click
-State := false
-GuiControl,, Status, 	X
-Suspend
 return
 
 $F3::

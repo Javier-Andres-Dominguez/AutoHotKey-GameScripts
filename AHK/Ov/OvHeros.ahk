@@ -73,180 +73,167 @@ StopAllScripts(){
     }
 }
 
-StopAllScriptsAndStartZumper(){
+StopAllScriptsAndStartOwn(name){
     StopAllScripts()
-    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\Zumper.ahk
+    name := SubStr(name, 1, StrLen(name)-4)
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\%name%.ahk
 }
 
 DvaBtn:
 GuiControl,, MyHeroPct, %Path%%Dva%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Dva)
 return
 DoomfistBtn:
 GuiControl,, MyHeroPct, %Path%%Doomfist%
-StopAllScripts()
-Run, %SPath%Doomfist.ahk
+StopAllScriptsAndStartOwn(Doomfist)
 return
 JunkerQueenBtn:
 GuiControl,, MyHeroPct, %Path%%JunkerQueen%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(JunkerQueen)
 return
 MaugaBtn:
 GuiControl,, MyHeroPct, %Path%%Mauga%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Mauga)
 return
 OrisaBtn:
 GuiControl,, MyHeroPct, %Path%%Orisa%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Orisa)
 return
 RamattraBtn:
 GuiControl,, MyHeroPct, %Path%%Ramattra%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Ramattra)
 return
 ReinhardtBtn:
 GuiControl,, MyHeroPct, %Path%%Reinhardt%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Reinhardt)
 return
 RoadhogBtn:
 GuiControl,, MyHeroPct, %Path%%Roadhog%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Roadhog)
 return
 SigmaBtn:
 GuiControl,, MyHeroPct, %Path%%Sigma%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Sigma)
 return
 WinstonBtn:
 GuiControl,, MyHeroPct, %Path%%Winston%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Winston)
 return
 WreckingBallBtn:
 GuiControl,, MyHeroPct, %Path%%WreckingBall%
-StopAllScripts()
-Run, %SPath%WreckingBall.ahk
+StopAllScriptsAndStartOwn(WreckingBall)
 return
 ZaryaBtn:
 GuiControl,, MyHeroPct, %Path%%Zarya%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Zarya)
 return
 AsheBtn:
 GuiControl,, MyHeroPct, %Path%%Ashe%
-StopAllScripts()
-Run, %SPath%Ashe.ahk
+StopAllScriptsAndStartOwn(Ashe)
 return
 BastionBtn:
 GuiControl,, MyHeroPct, %Path%%Bastion%
-StopAllScripts()
-Run, %SPath%Bastion.ahk
+StopAllScriptsAndStartOwn(Bastion)
 return
 CassidyBtn:
 GuiControl,, MyHeroPct, %Path%%Cassidy%
-StopAllScripts()
-Run, %SPath%Cassidy.ahk
+StopAllScriptsAndStartOwn(Cassidy)
 return
 EchoBtn:
 GuiControl,, MyHeroPct, %Path%%Echo%
-StopAllScripts()
+StopAllScriptsAndStartOwn(Echo)
 return
 GenjiBtn:
 GuiControl,, MyHeroPct, %Path%%Genji%
-StopAllScripts()
-Run, %SPath%Genji.ahk
+StopAllScriptsAndStartOwn(Genji)
 return
 HanzoBtn:
 GuiControl,, MyHeroPct, %Path%%Hanzo%
-StopAllScripts()
+StopAllScriptsAndStartOwn(Hanzo)
 return
 JunkratBtn:
 GuiControl,, MyHeroPct, %Path%%Junkrat%
-StopAllScripts()
-Run, %SPath%Junkrat.ahk
+StopAllScriptsAndStartOwn(Junkrat)
 return
 MeiBtn:
 GuiControl,, MyHeroPct, %Path%%Mei%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Mei)
 return
 PharahBtn:
 GuiControl,, MyHeroPct, %Path%%Pharah%
-StopAllScripts()
-Run, %SPath%Pharah.ahk
+StopAllScriptsAndStartOwn(Pharah)
 return
 ReaperBtn:
 GuiControl,, MyHeroPct, %Path%%Reaper%
-StopAllScripts()
-Run, %SPath%Reaper.ahk
+StopAllScriptsAndStartOwn(Reaper)
 return
 SojournBtn:
 GuiControl,, MyHeroPct, %Path%%Sojourn%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Sojourn)
 return
 Soldado76Btn:
 GuiControl,, MyHeroPct, %Path%%Soldado76%
-StopAllScripts()
-Run, %SPath%Soldado76.ahk
+StopAllScriptsAndStartOwn(Soldado76)
 return
 SombraBtn:
 GuiControl,, MyHeroPct, %Path%%Sombra%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Sombra)
 return
 SymmetraBtn:
 GuiControl,, MyHeroPct, %Path%%Symmetra%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Symmetra)
 return
 TorbjornBtn:
 GuiControl,, MyHeroPct, %Path%%Torbjorn%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Torbjorn)
 return
 TracerBtn:
 GuiControl,, MyHeroPct, %Path%%Tracer%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Tracer)
 return
 WidowmakerBtn:
 GuiControl,, MyHeroPct, %Path%%Widowmaker%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Widowmaker)
 return
 AnaBtn:
 GuiControl,, MyHeroPct, %Path%%Ana%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Ana)
 return
 BaptisteBtn:
 GuiControl,, MyHeroPct, %Path%%Baptiste%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Baptiste)
 return
 BrigitteBtn:
 GuiControl,, MyHeroPct, %Path%%Brigitte%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Brigitte)
 return
 IllariBtn:
 GuiControl,, MyHeroPct, %Path%%Illari%
-StopAllScriptsAndStartZumper()
+StopAllScriptsAndStartOwn(Illari)
 return
 KirikoBtn:
 GuiControl,, MyHeroPct, %Path%%Kiriko%
-StopAllScripts()
+StopAllScriptsAndStartOwn(Kiriko)
 return
 LifeweaverBtn:
 GuiControl,, MyHeroPct, %Path%%Lifeweaver%
-StopAllScripts()
+StopAllScriptsAndStartOwn(Lifeweaver)
 return
 LucioBtn:
 GuiControl,, MyHeroPct, %Path%%Lucio%
-StopAllScripts()
-Run, %SPath%Lucio.ahk
+StopAllScriptsAndStartOwn(Lucio)
 return
 MercyBtn:
 GuiControl,, MyHeroPct, %Path%%Mercy%
-StopAllScripts()
-Run, %SPath%Mercy.ahk
+StopAllScriptsAndStartOwn(Mercy)
 return
 MoiraBtn:
 GuiControl,, MyHeroPct, %Path%%Moira%
-StopAllScripts()
-Run, %SPath%Moira.ahk
+StopAllScriptsAndStartOwn(Moira)
 return
 ZenyattaBtn:
 GuiControl,, MyHeroPct, %Path%%Zenyatta%
-StopAllScripts()
-Run, %SPath%Zenyatta.ahk
+StopAllScriptsAndStartOwn(Zenyatta)
 return
 
 GuiClose:

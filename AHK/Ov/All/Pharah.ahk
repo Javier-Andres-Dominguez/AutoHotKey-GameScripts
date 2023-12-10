@@ -8,9 +8,13 @@ global mouseId := AHI.GetMouseId(0x093A, 0x2532)
 stdout := FileOpen("*", "w")
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
 AHI.SubscribeMouseButton(mouseId, 3, true, Func("LateralClickk"), true)
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Pharah
 return
 
-Lopo(){
+BoostYou(){
 AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
 Click
 AHI.Instance.SendMouseMoveRelative(mouseId, 0, -2100)
@@ -20,7 +24,7 @@ Send {Space}
 LateralClick(state){
     if(state){
 		Send {XButton2, down}
-        SetTimer, Lopo, -1
+        SetTimer, BoostYou, -1
 		stdout.Write("Bosst yourself`n")
 		stdout.Read()
     }else{
@@ -28,7 +32,7 @@ LateralClick(state){
     }
 }
 
-Lop(){
+MoveFoward(){
 	Send {q}
 	if(GetKeyState("w", "P")){
 		Send {w Up}
@@ -48,7 +52,7 @@ Lop(){
 LateralClickk(state){
     if(state){
 		Send {XButton1, down}
-        SetTimer, Lop, -1
+        SetTimer, MoveFoward, -1
     }else{
         Send {XButton1, up}
     }
@@ -75,12 +79,19 @@ MouseMove, 2050, 1225
 Click
 return
 
-$f2::
-Suspend
-return
-
 $F3::
 Reload
+return
+
+$F2::
+Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $f1::

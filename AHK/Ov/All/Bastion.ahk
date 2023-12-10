@@ -8,9 +8,13 @@ global mouseId := AHI.GetMouseId(0x093A, 0x2532)
 stdout := FileOpen("*", "w")
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
 AHI.SubscribeMouseButton(mouseId, 3, true, Func("LateralClickk"), true)
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Bastion
 return
 
-Cameramovee(){
+BoostYou(){
 stdout.Write("Bosst yourself`n")
 stdout.Read()
 AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
@@ -18,23 +22,17 @@ Click, Right
 AHI.Instance.SendMouseMoveRelative(mouseId, 0, -4300)
 Sleep 350
 Send {Space}
-Send {e}
 }
 
-Cameramove(){
-stdout.Write("Bosst yourself`n")
-stdout.Read()
-AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
-Click, Right
-AHI.Instance.SendMouseMoveRelative(mouseId, 0, -4300)
-Sleep 350
-Send {Space}
+BoostYouAndAttack(){
+BoostYou()
+Send {e}
 }
 
 LateralClick(state){
     if(state){
 		Send {XButton2, down}
-        SetTimer, Cameramove, -1
+        SetTimer, BoostYou, -1
     }else{
         Send {XButton2, up}
     }
@@ -43,13 +41,33 @@ LateralClick(state){
 LateralClickk(state){
     if(state){
 		Send {XButton1, down}
-        SetTimer, Cameramovee, -1
+        SetTimer, BoostYouAndAttack, -1
     }else{
         Send {XButton1, up}
     }
 }
 
 $Enter::
+return
+
+$c::
+while(GetKeyState("c","P")){
+	Send {c}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
+return
+
+$v::
+while(GetKeyState("v","P")){
+	Send {v}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
 return
 
 $Space::
@@ -79,14 +97,24 @@ Click
 Sleep 100
 MouseMove, 2050, 1225
 Click
-return
-
-$F2::
+State := false
+GuiControl,, Status, 	X
 Suspend
 return
 
 $F3::
 Reload
+return
+
+$F2::
+Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $F1::

@@ -1,44 +1,72 @@
-#SingleInstance force
-#Persistent
-#include <AutoHotInterception>
-SetBatchLines, -1
-
-global AHI := new AutoHotInterception()
-global mouseId := AHI.GetMouseId(0x093A, 0x2532)
-global RBDown := false
-global Color := 0x00FFFF
-global Loop := 0
-AHI.SubscribeMouseButton(mouseId, 0, true, Func("LClick"), true)
-AHI.SubscribeMouseButton(mouseId, 1, true, Func("RClick"), true)
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Widowmaker
 return
 
-moveR(){
-    while(RBDown = true){
-        PixelSearch, OutputVarX, OutputVarY, 959, 500, 961, 541, %Color%, 5, Fast
-        if( OutputVarX != null or OutputVarY != null){
-            Click, Down
-            Click, Up
-            sleep, 1500
-        }
-    }
-}
-
-LClick(state) {
-    if (state) {
-        Click, down
-    }else
-        Click, up
-}
-RClick(state) {
-    if state{
-        Click, down, Right
-        RBDown := true
-        SetTimer, moveR, -1
-    }else{
-        Click, up, Right
-        RBDown := false
+$c::
+while(GetKeyState("c","P")){
+	Send {c}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
 	}
 }
+return
+
+$v::
+while(GetKeyState("v","P")){
+	Send {v}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
+return
+
+$Space::
+while(GetKeyState("Space","P")){
+	Send {Space}
+	Sleep 50
+	if(GetKeyState("V", "P")){
+		Send {v}
+	}
+	if(GetKeyState("C", "P")){
+		Send {c}
+	}
+}
+return
+
+$RShift::
+while(GetKeyState("RShift", "P")){
+	MouseMove, 2425, 1800
+	Send {LButton}
+}
+return
+
+$NumpadEnter::
+Send {Esc}
+MouseMove, 1850, 1250
+Click
+Sleep 100
+MouseMove, 2225, 1225
+Click
+return
+
+$F3::
+Reload
+return
+
+$F2::
+Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
+return
 
 $F1::
 ExitApp

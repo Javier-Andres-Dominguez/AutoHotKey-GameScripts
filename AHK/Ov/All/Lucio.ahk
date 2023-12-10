@@ -1,14 +1,14 @@
 ﻿stdout := FileOpen("*", "w")
-
-Loop{
-	if(GetKeyState("Shift","P")){
-
-	}
-}
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Lucio
+return
 
 $XButton2::
 Send {Space Down}
 while(GetKeyState("XButton2","P")){
+
 }
 Send {Space Up}
 return
@@ -23,6 +23,13 @@ return
 $Enter::
 return
 
+$RShift::
+while(GetKeyState("RShift", "P")){
+	MouseMove, 2925, 1800
+	Click
+}
+return
+
 $NumpadEnter::
 Send {Esc}
 Sleep 100
@@ -33,15 +40,19 @@ MouseMove, 2075, 1215
 Click
 return
 
-$RShift::
-while(GetKeyState("RShift", "P")){
-	MouseMove, 2925, 1800
-	Click
-}
+$F3::
+Reload
 return
 
 $F2::
 Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $F1::

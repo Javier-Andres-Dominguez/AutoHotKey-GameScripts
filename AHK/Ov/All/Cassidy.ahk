@@ -5,55 +5,96 @@ SetBatchLines, -1
 
 global AHI := new AutoHotInterception()
 global mouseId := AHI.GetMouseId(0x093A, 0x2532)
-global Loop := 0
-global chatting := false
-AHI.SubscribeMouseButton(mouseId, 0, true, Func("LClick"), true)
+global BulletN := 0
 AHI.SubscribeMouseButton(mouseId, 1, true, Func("RClick"), true)
+State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Cassidy
 return
 
-moveR(){
-    while(Loop < 6){
+RBRecoil(){
+    while(BulletN < 6){
         AHI.Instance.SendMouseMoveRelative(mouseId, 0, 100)
-        sleep, 150
-        Loop := Loop+1
+        Sleep 150
+        BulletN := BulletN+1
     }
-    Loop := 0
+    BulletN := 0
 }
 
-LClick(state) {
-    if (state) {
-        Click, down
-    }else
-        Click, up
-}
 RClick(state) {
     if state{
         Click, down, Right
-        SetTimer, moveR, -1
+        SetTimer, RBRecoil, -1
     }else{
         Click, up, Right
 	}
 }
 
-$Esc::
-Send {Esc}
-chatting := false
+$c::
+while(GetKeyState("c","P")){
+	Send {c}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
+return
+
+$v::
+while(GetKeyState("v","P")){
+	Send {v}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
 return
 
 $Space::
-if(!chatting){
-    while(GetKeyState("Space", "P")){
-        Send {Space}
-        if(GetKeyState("e", "P")){
-            Send {e}
-        }
-        if(GetKeyState("v", "P")){
-            Send {v}
-        }
-        Sleep 25
-    }
-}else{
+while(GetKeyState("Space", "P")){
     Send {Space}
+    if(GetKeyState("v", "P")){
+        Send {v}
+    }
+    if(GetKeyState("c", "P")){
+        Send {c}
+    }
+    Sleep 25
+}
+return
+
+$RShift::
+while(GetKeyState("RShift", "P")){
+    MouseMove, 1725, 1650
+    Send {LButton}
+}
+return
+
+$NumpadEnter::
+Send {Esc}
+MouseMove, 1850, 1250
+Click
+Sleep 100
+MouseMove, 2050, 1225
+Click
+State := false
+GuiControl,, Status, 	X
+Suspend
+return
+
+$F3::
+Reload
+return
+
+$F2::
+Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
 }
 return
 

@@ -1,12 +1,18 @@
-﻿$c::
+﻿State := false
+Gui, Font, s60
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Show, 			x5760 y550	h250 w250, 					Hanzo
+return
+
+$c::
 Click
 Send {c}
 return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-		MouseMove, 2100, 1700
-		Send {LButton}
+	MouseMove, 2120, 1650
+	Click
 }
 return
 
@@ -17,10 +23,24 @@ Click
 Sleep 100
 MouseMove, 2050, 1225
 Click
+State := false
+GuiControl,, Status, 	X
+Suspend
 return
 
-$f2::
+$F3::
+Reload
+return
+
+$F2::
 Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $f1::
