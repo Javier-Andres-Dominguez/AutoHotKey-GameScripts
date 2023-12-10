@@ -11,7 +11,7 @@ Gui, Add, Text, 	x110 y0, 								Status
 Gui, Font, s40
 Gui, Add, Text, 	x0 y190 	h80 w250	vLastHpColor,	Hp Color
 Gui, Font, s15
-Gui, Add, Text, 	x80 y440 	h20 w100	vState,				O
+Gui, Add, Text, 	x80 y440 	h20 w100	vState,		Suspended
 Gui, Show, 			x5760 y550	h500 w250, 					Mercy Better Controller
 Suspend
 GuiControl,, M8, 	Suspended
