@@ -41,6 +41,7 @@ Loop{	;Scan all the time his last hp color and if he is antihealed
 	}
 }Until (!GetKeyState("LButton", "P"))	;In case you stop pressing Left click:
 Send {LButton Up}
+Send {RButton Up}
 GuiControl,, State, 	Active
 return
 
@@ -68,6 +69,7 @@ Loop{	;Scan all the time his last hp color and if he is antihealed
 	}
 }Until (!GetKeyState("RButton", "P"))	;In case you stop pressing Right click:
 Send {RButton Up}
+Send {LButton Up}
 GuiControl,, State, 	Active
 return
 
