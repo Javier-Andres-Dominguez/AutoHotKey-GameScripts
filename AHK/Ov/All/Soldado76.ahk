@@ -19,17 +19,29 @@ return
 
 moveDown(){
     Click, down
-    while(LBDown = true){
+    while(LBDown){
         if(GetKeyState("Space", "P")){
             Send {Space}
         }
         AHI.Instance.SendMouseMoveRelative(mouseId, 0, mouseDistance)
         mouseLoop += 15
-        sleep, 1
+        sleep 1
         if(mouseLoop >= 400){
             mouseDistance := 6
         }
     }
+}
+
+LClick(state) {
+    if (state) {
+        LBDown := true
+        ;Send {MButton}
+        SetTimer, moveDown, -1
+    }else
+        LBDown := false
+        Click, up
+        mouseLoop := 0
+        mouseDistance := 1
 }
 
 Boost(){
@@ -48,18 +60,6 @@ LateralClick(state){
     }else{
         Send {XButton2, up}
     }
-}
-
-LClick(state) {
-    if (state) {
-        LBDown := true
-        ;Send {MButton}
-        SetTimer, moveDown, -1
-    }else
-        LBDown := false
-        Click, up
-        mouseLoop := 0
-        mouseDistance := 1
 }
 
 $Enter::
