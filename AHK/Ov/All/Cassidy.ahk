@@ -7,7 +7,7 @@ global AHI := new AutoHotInterception()
 global mouseId := AHI.GetMouseId(0x093A, 0x2532)
 global BulletN := 0
 AHI.SubscribeMouseButton(mouseId, 1, true, Func("RClick"), true)
-State := false
+State := true
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Cassidy
@@ -91,10 +91,10 @@ $F2::
 Suspend
 if(State){
 	State := false
-	GuiControl,, Status, 	O
+	GuiControl,, Status, 	X
 }else{
 	State := true
-	GuiControl,, Status, 	X
+	GuiControl,, Status, 	O
 }
 return
 

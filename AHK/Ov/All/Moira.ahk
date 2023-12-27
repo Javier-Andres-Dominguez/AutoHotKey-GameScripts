@@ -7,7 +7,7 @@ global mouseId := AHI.GetMouseId(0x093A, 0x2532)
 stdout := FileOpen("*", "w")
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
 AHI.SubscribeMouseButton(mouseId, 3, true, Func("LateralClic"), true)
-State := false
+State := true
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Moira
@@ -76,8 +76,8 @@ return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-		MouseMove, 3200, 1800
-		Send {LButton}
+	MouseMove, 3200, 1800
+	Send {LButton}
 }
 return
 
@@ -101,10 +101,10 @@ $F2::
 Suspend
 if(State){
 	State := false
-	GuiControl,, Status, 	O
+	GuiControl,, Status, 	X
 }else{
 	State := true
-	GuiControl,, Status, 	X
+	GuiControl,, Status, 	O
 }
 return
 

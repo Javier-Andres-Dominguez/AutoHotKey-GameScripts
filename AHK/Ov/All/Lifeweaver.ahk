@@ -1,4 +1,4 @@
-State := false
+State := true
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Lifeweaver
@@ -32,6 +32,9 @@ Click
 Sleep 100
 MouseMove, 2225, 1225
 Click
+State := false
+GuiControl,, Status, 	X
+Suspend
 return
 
 $F3::
@@ -42,10 +45,10 @@ $F2::
 Suspend
 if(State){
 	State := false
-	GuiControl,, Status, 	O
+	GuiControl,, Status, 	X
 }else{
 	State := true
-	GuiControl,, Status, 	X
+	GuiControl,, Status, 	O
 }
 return
 
