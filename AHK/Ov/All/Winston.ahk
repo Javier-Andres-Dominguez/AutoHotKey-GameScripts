@@ -6,6 +6,7 @@ return
 
 $c::
 while(GetKeyState("c","P")){
+	Send {RButton Up}
 	Send {c}
 	Sleep 50
 	if(GetKeyState("Space", "P")){
@@ -16,6 +17,7 @@ return
 
 $v::
 while(GetKeyState("v","P")){
+	Send {RButton Up}
 	Send {v}
 	Sleep 50
 	if(GetKeyState("Space", "P")){
