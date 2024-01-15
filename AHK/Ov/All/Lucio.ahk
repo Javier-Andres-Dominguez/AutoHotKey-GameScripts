@@ -5,6 +5,9 @@ Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Lucio
 return
 
+$Enter::
+return
+
 $XButton2::
 Send {Space Down}
 while(GetKeyState("XButton2","P")){
@@ -18,9 +21,6 @@ while(GetKeyState("Space","P")){
 	Send {Space}
 	Sleep 50
 }
-return
-
-$Enter::
 return
 
 $RShift::

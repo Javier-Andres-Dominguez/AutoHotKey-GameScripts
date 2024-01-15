@@ -4,6 +4,9 @@ Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					WreckingBall
 return
 
+$Enter::
+return
+
 $x::
 Send {x}
 Sleep 100

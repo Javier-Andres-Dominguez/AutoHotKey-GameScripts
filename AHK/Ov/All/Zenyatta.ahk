@@ -4,6 +4,9 @@ Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Zenyatta
 return
 
+$Enter::
+return
+
 $LButton::
 Send {LButton Down}
 While(GetKeyState("LButton","P")){
@@ -21,9 +24,6 @@ return
 $q::
 Send {q}
 Send {MButton}
-return
-
-$Enter::
 return
 
 $c::

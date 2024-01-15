@@ -13,6 +13,9 @@ Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Cassidy
 return
 
+$Enter::
+return
+
 RBRecoil(){
     while(BulletN < 6){
         AHI.Instance.SendMouseMoveRelative(mouseId, 0, 100)

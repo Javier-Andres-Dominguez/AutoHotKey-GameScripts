@@ -4,6 +4,9 @@ Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
 Gui, Show, 			x5760 y550	h250 w250, 					Junkrat
 return
 
+$Enter::
+return
+
 $RButton::
 while(GetKeyState("RButton","P")){
 	Send {RButton}
@@ -45,9 +48,6 @@ while(GetKeyState("V","P")){
 		send {Space}
 	}
 }
-return
-
-$Enter::
 return
 
 $RShift::
