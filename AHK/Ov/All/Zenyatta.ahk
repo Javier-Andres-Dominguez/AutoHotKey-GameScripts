@@ -12,30 +12,31 @@ Gui, Add, Text, 	x170 y350 	h80 w140	vDiscordOrb 	c0xD661AE, 	X
 Gui, Show, 			x5760 y550	h500 w250, 					Zenyatta
 
 Loop{
-	if(State){
+	if(State){		;If the script is on:
 		if(!HD){
-			PixelGetColor, AllyHealing, 1588, 1969
-			PixelGetColor, AllyHealed, 1710, 1969
-			PixelGetColor, EnemyDiscord, 2128, 1969
+			PixelGetColor, AllyHealing, 1588, 1969 	;Get the first AllyHpPixel color
+			PixelGetColor, AllyHealed, 1710, 1969 	;Get the first AllyHpPixel color
+			PixelGetColor, EnemyDiscord, 2128, 1969 	;Get the first EnemyHpPixel color
 		}else{
-			PixelGetColor, AllyHealing, 794, 984
-			PixelGetColor, AllyHealed, 855, 984
-			PixelGetColor, EnemyDiscord, 1064, 984
+			PixelGetColor, AllyHealing, 794, 984 	;Get the first AllyHpPixel color
+			PixelGetColor, AllyHealed, 855, 984 	;Get the first AllyHpPixel color
+			PixelGetColor, EnemyDiscord, 1064, 984		;Get the first EnemyHpPixel color
 		}
-		if(AllyHealing!="0xFFFFFF"){
+		if(AllyHealing!="0xFFFFFF"){	;If your are not using your healing orb:
 			GuiControl,, HealingOrb, 	X
-		}else{
-			If(AllyHealed!="0xFFFFFF"){
+			Send {e}	;Spam the healing orb
+		}else{	;If you are using it:
+			If(AllyHealed!="0xFFFFFF"){		;If the ally isn´t full HP:
 				GuiControl,, HealingOrb, 	O
-			}else{
+			}else{	;If the ally is full HP:
 				GuiControl,, HealingOrb, 	P
-				Send {e}
+				Send {e}	;Spam the healing orb
 			}
 		}
-		if(EnemyDiscord!="0xFFFFFF"){
+		if(EnemyDiscord!="0xFFFFFF"){	;If your are not using your discord orb:
 			GuiControl,, DiscordOrb, 	X
-			Send {q}
-		}else{
+			Send {q}	;Spam the discord orb
+		}else{	;If your are using your healing orb:
 			GuiControl,, DiscordOrb, 	O
 		}
 	}
@@ -51,7 +52,7 @@ Resolution4K:
 	HD := false
 }
 
-$Enter::
+$Enter::	;Don´t type in this game, it´s not worth it
 return
 
 $LButton::
@@ -155,7 +156,7 @@ $F3::
 Reload
 return
 
-$F2::
+$F2::	;Suspend
 Suspend
 if(State){
 	State := false
@@ -166,5 +167,8 @@ if(State){
 }
 return
 
-$f1::
+$f1::	;Close
+ExitApp
+
+GuiClose:	;Close
 ExitApp

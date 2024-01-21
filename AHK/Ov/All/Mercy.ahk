@@ -8,7 +8,7 @@ Green := "F"
 stdout := FileOpen("*", "w")
 
 ;Interface
-Gui, Add, Text, 	x110 y0, 								Status
+Gui, Add, Text, 	x80 y0, 								Choose resolution
 Gui, Add, Button, 	x0 y20 		h80 w250	gResolutionHD,	HD
 Gui, Add, Button, 	x0 y100 	h80 w250	gResolution4K,	4k
 Gui, Font, s40
@@ -158,5 +158,5 @@ return
 $f1::	;Close
 ExitApp
 
-GuiClose:
+GuiClose:	;Close
 ExitApp
