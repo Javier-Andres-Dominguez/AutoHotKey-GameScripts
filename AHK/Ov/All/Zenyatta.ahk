@@ -1,8 +1,55 @@
-State := true
+State := false
+HD := false
+;Interface
+Gui, Add, Text, 	x80 y0, 								Choose resolution
+Gui, Add, Button, 	x0 y20 		h80 w250	gResolutionHD,	HD
+Gui, Add, Button, 	x0 y100 	h80 w250	gResolution4K,	4k
 Gui, Font, s60
-Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Zenyatta
-return
+Gui, Add, Text, 	x90 y190 	h80 w70		vStatus, 		X
+Gui, Font, s20
+Gui, Add, Text, 	x60 y350 	h80 w140	vHealingOrb 	c0xFFF000, 	X
+Gui, Add, Text, 	x170 y350 	h80 w140	vDiscordOrb 	c0xD661AE, 	X
+Gui, Show, 			x5760 y550	h500 w250, 					Zenyatta
+
+Loop{
+	if(State){
+		if(!HD){
+			PixelGetColor, AllyHealing, 1588, 1969
+			PixelGetColor, AllyHealed, 1710, 1969
+			PixelGetColor, EnemyDiscord, 2128, 1969
+		}else{
+			PixelGetColor, AllyHealing, 794, 984
+			PixelGetColor, AllyHealed, 855, 984
+			PixelGetColor, EnemyDiscord, 1064, 984
+		}
+		if(AllyHealing!="0xFFFFFF"){
+			GuiControl,, HealingOrb, 	X
+		}else{
+			If(AllyHealed!="0xFFFFFF"){
+				GuiControl,, HealingOrb, 	O
+			}else{
+				GuiControl,, HealingOrb, 	P
+				Send {e}
+			}
+		}
+		if(EnemyDiscord!="0xFFFFFF"){
+			GuiControl,, DiscordOrb, 	X
+			Send {q}
+		}else{
+			GuiControl,, DiscordOrb, 	O
+		}
+	}
+}
+
+ResolutionHD:
+{
+	HD := true
+}
+
+Resolution4K:
+{
+	HD := false
+}
 
 $Enter::
 return
@@ -29,6 +76,16 @@ return
 $c::
 while(GetKeyState("c","P")){
 	Send {c}
+	Sleep 50
+	if(GetKeyState("Space", "P")){
+		Send {Space}
+	}
+}
+return
+
+$e::
+while(GetKeyState("e","P")){
+	Send {e}
 	Sleep 50
 	if(GetKeyState("Space", "P")){
 		Send {Space}
@@ -64,20 +121,33 @@ return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-	MouseMove, 3325, 1800
+	if(!HD){
+		MouseMove, 3325, 1800
+	}else{
+		MouseMove, 1662, 900
+	}
 	Send {LButton}
 }
 return
 
-$NumpadEnter::
+$NumpadEnter::	;Get out of the game
 Send {Esc}
-MouseMove, 1850, 1250
+Sleep 100
+if(!HD){
+	MouseMove, 1850, 1250
+}else{
+	MouseMove, 925, 625
+}
 Click
 Sleep 100
-MouseMove, 2050, 1225
+if(!HD){
+	MouseMove, 2075, 1215
+}else{
+	MouseMove, 1037, 607
+}
 Click
 State := false
-GuiControl,, Status, 	X
+GuiControl,, State, 	X
 Suspend
 return
 

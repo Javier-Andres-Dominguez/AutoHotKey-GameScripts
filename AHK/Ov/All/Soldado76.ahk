@@ -4,7 +4,7 @@
 SetBatchLines, -1
 
 global AHI := new AutoHotInterception()
-global mouseId := AHI.GetMouseId(0x093A, 0x2532)
+global mouseId := AHI.GetMouseId(0x1BCF, 0x08B8)
 stdout := FileOpen("*", "w")
 global LBDown := false
 global mouseDistance := 2
