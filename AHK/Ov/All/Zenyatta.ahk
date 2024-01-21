@@ -7,9 +7,10 @@ Gui, Add, Button, 	x0 y100 	h80 w250	gResolution4K,	4k
 Gui, Font, s60
 Gui, Add, Text, 	x90 y190 	h80 w70		vStatus, 		X
 Gui, Font, s20
-Gui, Add, Text, 	x60 y350 	h80 w140	vHealingOrb 	c0xFFF000, 	X
+Gui, Add, Text, 	x60 y350 	h80 w140	vHealingOrb 	c0xFCBE03, 	X
 Gui, Add, Text, 	x170 y350 	h80 w140	vDiscordOrb 	c0xD661AE, 	X
 Gui, Show, 			x5760 y550	h500 w250, 					Zenyatta
+Suspend
 
 Loop{
 	if(State){		;If the script is on:
