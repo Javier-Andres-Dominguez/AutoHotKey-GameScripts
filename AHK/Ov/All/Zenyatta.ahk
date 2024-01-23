@@ -31,15 +31,15 @@ Loop{
 			PixelGetColor, AllyHealed, 855, 984 	;Get the first AllyHpPixel color
 			PixelGetColor, EnemyDiscord, 1064, 984		;Get the first EnemyHpPixel color
 		}
-		if(AllyHealing!="0xFFFFFF"){	;If your are not using your healing orb:
+		if(AllyHealing!=White){	;If your are not using your healing orb:
 			GuiControl,, HealingOrb, 	X
 			Send {e}	;Spam the healing orb
 		}else{	;If you are using it:
-			If(AllyHealed!="0xFFFFFF" || SubStr(AllyHealed, 1, 5)==Blue || SubStr(AllyHealed, 7, 8)==Orange || SubStr(AllyHealed, 5, 1)==Green){		;If the ally isn´t full HP:
-				GuiControl,, HealingOrb, 	O
-			}else{	;If the ally is full HP:
+			If(AllyHealed==White || SubStr(AllyHealed, 1, 5)==Blue || SubStr(AllyHealed, 7, 8)==Orange || SubStr(AllyHealed, 5, 1)==Green){		;If the ally is full HP:
 				GuiControl,, HealingOrb, 	P
 				Send {e}	;Spam the healing orb
+			}else{	;If the ally isn´t full HP:
+				GuiControl,, HealingOrb, 	O
 			}
 		}
 		if(EnemyDiscord!="0xFFFFFF"){	;If your are not using your discord orb:
