@@ -1,5 +1,10 @@
 State := false
 HD := false
+White := 0xFFFFFF
+Bastion := "0xF"
+Blue := "0xFFD"
+Orange := "FF"
+Green := "F"
 ;Interface
 Gui, Add, Text, 	x80 y0, 								Choose resolution
 Gui, Add, Button, 	x0 y20 		h80 w250	gResolutionHD,	HD
@@ -14,6 +19,9 @@ Suspend
 
 Loop{
 	if(State){		;If the script is on:
+		if(GetKeyState("Space", "P")){
+			Send {Space}
+		}
 		if(!HD){
 			PixelGetColor, AllyHealing, 1588, 1969 	;Get the first AllyHpPixel color
 			PixelGetColor, AllyHealed, 1710, 1969 	;Get the first AllyHpPixel color
@@ -27,7 +35,7 @@ Loop{
 			GuiControl,, HealingOrb, 	X
 			Send {e}	;Spam the healing orb
 		}else{	;If you are using it:
-			If(AllyHealed!="0xFFFFFF"){		;If the ally isn´t full HP:
+			If(AllyHealed!="0xFFFFFF" || SubStr(AllyHealed, 1, 5)==Blue || SubStr(AllyHealed, 7, 8)==Orange || SubStr(AllyHealed, 5, 1)==Green){		;If the ally isn´t full HP:
 				GuiControl,, HealingOrb, 	O
 			}else{	;If the ally is full HP:
 				GuiControl,, HealingOrb, 	P
@@ -54,20 +62,6 @@ Resolution4K:
 }
 
 $Enter::	;Don´t type in this game, it´s not worth it
-return
-
-$LButton::
-Send {LButton Down}
-While(GetKeyState("LButton","P")){
-	If(GetKeyState("XButton2", "P")){
-		Send {q}
-	}
-	Sleep 25
-	if(GetKeyState("Space", "P")){
-		Send {space}
-	}
-}
-Send {LButton Up}
 return
 
 $q::
@@ -101,22 +95,6 @@ while(GetKeyState("v","P")){
 	Sleep 50
 	if(GetKeyState("Space", "P")){
 		Send {Space}
-	}
-}
-return
-
-$Space::
-while(GetKeyState("Space","P")){
-	Send {Space}
-	Sleep 25
-	if(GetKeyState("V", "P")){
-		Send {v}
-	}
-	if(GetKeyState("C", "P")){
-		Send {c}
-	}
-	if(GetKeyState("E", "P")){
-		Send {e}
 	}
 }
 return
