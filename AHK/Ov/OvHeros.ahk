@@ -12,7 +12,9 @@ Ana := "Ana.png", Baptiste := "Baptiste.png", Brigitte := "Brigitte.png", Illari
 Moira := "Moira.png", Zenyatta := "Zenyatta.png"
 
 Gui, Add, Text, 	x550 y0, 								Select Your Hero
-Gui, Add, Picture, 	vMyHeroPct 		x550 y100 	w100 h100
+Gui, Add, Picture, 	vMyHeroPct 		x575 y100 	w100 h100
+Gui, Add, Button, 	                x350  y210 	w250 h80 	gStartDodge,		Dodge
+Gui, Add, Button, 	                x650  y210 	w250 h80 	gStartJumper,		Jumper
 Gui, Add, Picture, 	vDvaPct 		x50 y300 	w50 h50		gDvaBtn,			%Path%%Dva%
 Gui, Add, Picture, 	vDoomfistPct 	x100 y300 	w50 h50		gDoomfistBtn, 		%Path%%Doomfist%
 Gui, Add, Picture, 	vJunkerQueenPct x150 y300 	w50 h50		gJunkerQueenBtn, 	%Path%%JunkerQueen%
@@ -77,6 +79,18 @@ StopAllScriptsAndStartOwn(name){
     StopAllScripts()
     name := SubStr(name, 1, StrLen(name)-4)
     Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\%name%.ahk
+}
+
+StartDodge:
+{
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\Dodge.ahk
+    return
+}
+
+StartJumper:
+{
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\Zumper.ahk
+    return
 }
 
 DvaBtn:

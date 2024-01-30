@@ -52,7 +52,7 @@ Send {Esc}
 MouseMove, 1850, 1250
 Click
 Sleep 100
-MouseMove, 2050, 1225
+MouseMove, 2075, 1215
 Click
 State := false
 GuiControl,, Status, 	X

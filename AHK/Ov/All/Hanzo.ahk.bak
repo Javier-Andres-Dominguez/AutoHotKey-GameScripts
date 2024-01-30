@@ -1,29 +1,36 @@
-State := true
+﻿State := true
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Reinhardt
+Gui, Show, 			x5760 y550	h250 w250, 					Hanzo
 return
 
 $Enter::
 return
 
-$Space::
-while(GetKeyState("Space","P")){
-	Send {Space}
-	Sleep 50
-	if(GetKeyState("V", "P")){
-		Send {v}
-	}
-	if(GetKeyState("C", "P")){
-		Send {c}
-	}
+$q::
+Click
+Send {LButton Down}
+if(!GetKeyState("LButton", "P")){
+	Send {LButton Up}
 }
+Send {q}
+Send {LButton Up}
+return
+
+$v::
+Click
+Send {v}
+return
+
+$c::
+Click
+Send {c}
 return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-	MouseMove, 500, 1800
-	Send {LButton}
+	MouseMove, 2120, 1650
+	Click
 }
 return
 
@@ -32,7 +39,7 @@ Send {Esc}
 MouseMove, 1850, 1250
 Click
 Sleep 100
-MouseMove, 2075, 1215
+MouseMove, 2050, 1225
 Click
 State := false
 GuiControl,, Status, 	X
@@ -54,5 +61,5 @@ if(State){
 }
 return
 
-$F1::
+$f1::
 ExitApp

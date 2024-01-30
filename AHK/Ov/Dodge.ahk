@@ -2,7 +2,7 @@
 State := true
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Ana
+Gui, Show, 			x5760 y550	h250 w250, 					Dodge
 
 Loop{
     if(slide and !(GetKeyState("W", "P") || GetKeyState("A", "P") || GetKeyState("S", "P") || GetKeyState("D", "P"))){
@@ -93,7 +93,7 @@ Loop{
     }
 }
 
-$XButton1::
+$f3::
 if(slide){
     slide := false
     Send {d Up}
@@ -105,7 +105,7 @@ if(slide){
 }
 return
 
-$F2::
+$F4::
 Suspend
 if(State){
 	State := false
@@ -121,5 +121,5 @@ Send {d Up}
 Send {a Up}
 ExitApp
 
-GroupClose:
+GuiClose:
 ExitApp

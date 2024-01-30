@@ -1,5 +1,4 @@
-﻿; You need in options to change healing--> press the button
-stdout := FileOpen("*", "w")
+﻿stdout := FileOpen("*", "w")
 State := false
 HD := false
 ;Interface

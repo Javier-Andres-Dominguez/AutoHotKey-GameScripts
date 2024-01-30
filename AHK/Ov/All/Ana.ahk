@@ -43,7 +43,7 @@ return
 $RShift::
 while(GetKeyState("RShift", "P")){
 	MouseMove, 2825, 1650
-		Send {LButton}
+	Send {LButton}
 }
 return
 
@@ -52,7 +52,7 @@ Send {Esc}
 MouseMove, 1850, 1250
 Click
 Sleep 100
-MouseMove, 2225, 1225
+MouseMove, 2075, 1215
 Click
 State := false
 GuiControl,, Status, 	X
@@ -75,4 +75,7 @@ if(State){
 return
 
 $F1::
+ExitApp
+
+GroupClose:
 ExitApp

@@ -85,10 +85,6 @@ GuiControl,, Status, 	X
 Suspend
 return
 
-$F3::
-Reload
-return
-
 $F2::
 Suspend
 if(State){

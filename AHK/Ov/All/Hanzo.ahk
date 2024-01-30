@@ -7,6 +7,16 @@ return
 $Enter::
 return
 
+$q::
+Click
+Send {q}
+return
+
+$v::
+Click
+Send {v}
+return
+
 $c::
 Click
 Send {c}

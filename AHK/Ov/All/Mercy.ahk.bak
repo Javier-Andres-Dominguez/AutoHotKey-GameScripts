@@ -105,6 +105,10 @@ GuiControl,, Status, 	X
 Suspend
 return
 
+$f3::	;Reload
+Reload
+return
+
 $f2::	;Suspend
 Suspend
 if(State){
