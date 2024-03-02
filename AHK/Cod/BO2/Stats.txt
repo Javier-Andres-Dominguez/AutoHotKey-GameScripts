@@ -1,0 +1,2 @@
+statSetPyName plevel 0
+statSetPyName rankxp 1000000
