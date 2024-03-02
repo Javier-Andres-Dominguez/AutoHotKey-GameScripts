@@ -1,4 +1,5 @@
-﻿#SingleInstance force
+;This program is an aimbot so you can focus in dodging projectiles. This is oriented to 4k pixeled monitor, in the future I´ll add an option for 1920*1080. Center your hero and don´t rotate the screen. The map has to be zoomed max in.
+#SingleInstance force
 #Persistent
 #include <AutoHotInterception>
 SetBatchLines, -1
