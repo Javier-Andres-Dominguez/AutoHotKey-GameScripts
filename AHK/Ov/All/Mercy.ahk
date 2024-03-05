@@ -8,14 +8,20 @@ Green := "F"
 stdout := FileOpen("*", "w")
 
 ;Interface
+Gui, +AlwaysOnTop
 Gui, Add, Text, 	x80 y0, 											Choose resolution
 Gui, Add, Button, 	x0 y20 		h80 w250	gResolutionHD,				HD
 Gui, Add, Button, 	x0 y100 	h80 w250	gResolution4K,				4k
 Gui, Font, s60
-Gui, Add, Text, 	x90 y200 	h80 w70		vStatus, 					X
-Gui, Add, Text, 	x30 y325 	h80 w140	vHealingLaser 	c0xFCBE03, 	X
-Gui, Add, Text, 	x170 y325 	h80 w140	vBoostingLaser 	c0x0398FC, 	X
-Gui, Show, 			x5760 y550	h500 w250, 								Mercy Better Controller
+Gui, Add, Text, 	x90 y200 	h80 w60		vStatus, 					X
+Gui, Add, Text, 	x90 y200 	h80 w60	vHealingLaser 	c0xFCBE03, 	O
+GuiControl, Hide, HealingLaser
+Gui, Font, s15
+Gui, Add, Text, 	x80 y310 	h40 w100	vLastHpPixelColor, 			LastHpPixelColor
+Gui, Font, s60
+Gui, Add, Text, 	x90 y200 	h80 w60	vBoostingLaser 	c0x0398FC, 	O
+GuiControl, Hide, BoostingLaser
+Gui, Show, 			x5760 y815	h375 w250, 								Mercy Better Controller
 Suspend
 GuiControl,, M8, 	Suspended
 return
@@ -30,6 +36,11 @@ Resolution4K:
 	HD := false
 }
 
+ResetMouse(){
+	Send {LButton Up}
+	Send {RButton Up}
+}
+
 $+LButton::
 $^LButton::
 $LButton::
@@ -37,9 +48,9 @@ Send {RButton Up}
 Send {LButton Down}
 Loop{	;Scan in the screen until you vinculate to an Ally
 	if(!HD){
-		PixelGetColor firstHpColor, 1852, 1430
+		PixelGetColor firstHpColor, 1858, 1437
 	}else{
-		PixelGetColor firstHpColor, 926, 715
+		PixelGetColor firstHpColor, 929, 718
 	}
 }
 Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)	;Bastion is weird, he has his own hp color
@@ -49,25 +60,28 @@ Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)	;Bastion is w
 Loop{	;Scan all the time his last hp color and if he is antihealed
 	if(!HD){
 		PixelGetColor antiHeal, 1905, 1467
-		PixelGetColor lastHpColor, 1978, 1430
+		PixelGetColor lastHpColor, 1982, 1435
 	}else{
 		PixelGetColor antiHeal, 952, 733
-		PixelGetColor lastHpColor, 989, 715
+		PixelGetColor lastHpColor, 991, 717
 	}
+	GuiControl,, LastHpPixelColor, %lastHpColor%
 	if(antiHeal==White || lastHpColor==White || SubStr(lastHpColor, 1, 5)==Blue || SubStr(lastHpColor, 7, 8)==Orange || SubStr(lastHpColor, 5, 1)==Green){	;If he is full hp:
 		Send {RButton Down}
-		GuiControl,, BoostingLaser, O
-		GuiControl,, HealingLaser, 	X
+		GuiControl, Show, BoostingLaser
+		GuiControl, Hide, HealingLaser
+		GuiControl, Hide, Status
 	}else{	;If he isn´t full hp:
 		Send {RButton Up}
-		GuiControl,, HealingLaser, 	O
-		GuiControl,, BoostingLaser, X
+		GuiControl, Hide, BoostingLaser
+		GuiControl, Show, HealingLaser
+		GuiControl, Hide, Status
 	}
 }Until (!GetKeyState("LButton", "P"))	;In case you stop pressing Left click:
-Send {LButton Up}
-GuiControl,, HealingLaser, 	X
-Send {RButton Up}
-GuiControl,, BoostingLaser, X
+ResetMouse()
+GuiControl, Hide, BoostingLaser
+GuiControl, Hide, HealingLaser
+GuiControl, Show, Status
 return
 
 $Enter::	;Don´t type in this game, it´s not worth it
@@ -80,7 +94,7 @@ while(GetKeyState("RShift", "P")){
 	}else{
 		MouseMove, 1550, 900
 	}
-	Send {LButton}
+	Click
 }
 return
 
@@ -110,9 +124,16 @@ Suspend
 if(State){
 	State := false
 	GuiControl,, Status, 	X
+	GuiControl, Hide, BoostingLaser
+	GuiControl, Hide, HealingLaser
+	GuiControl, Show, Status
+	ResetMouse()
 }else{
 	State := true
 	GuiControl,, Status, 	O
+	GuiControl, Hide, BoostingLaser
+	GuiControl, Hide, HealingLaser
+	GuiControl, Show, Status
 }
 return
 

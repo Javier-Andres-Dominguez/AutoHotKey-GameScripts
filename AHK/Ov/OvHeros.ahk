@@ -11,6 +11,7 @@ Sombra := "Sombra.png",Symmetra := "Symmetra.png", Torbjorn := "Torbjorn.png", T
 Ana := "Ana.png", Baptiste := "Baptiste.png", Brigitte := "Brigitte.png", Illari := "Illari.png", Kiriko := "Kiriko.png", Lifeweaver := "Lifeweaver.png", Lucio := "Lucio.png", Mercy := "Mercy.png",
 Moira := "Moira.png", Zenyatta := "Zenyatta.png"
 
+Gui, +AlwaysOnTop
 Gui, Add, Text, 	x550 y0, 								Select Your Hero
 Gui, Add, Picture, 	vMyHeroPct 		x575 y100 	w100 h100
 Gui, Add, Button, 	                x350  y210 	w250 h80 	gStartDodge,		Dodge

@@ -12,9 +12,10 @@ global mouseLoop := 0
 AHI.SubscribeMouseButton(mouseId, 0, true, Func("LClick"), true)
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
 global CurrentState := true
+Gui, +AlwaysOnTop
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Soldier 76
+Gui, Show, 			x5760 y1200	h250 w250, 					Soldier 76
 return
 
 moveDown(){
@@ -52,6 +53,7 @@ Boost(){
     AHI.Instance.SendMouseMoveRelative(mouseId, 0, 10000)
     Click, Right
     Send {Space}
+    Send {e}
     AHI.Instance.SendMouseMoveRelative(mouseId, 0, -4500)
 }
 

@@ -3,6 +3,7 @@ stdout := FileOpen("*", "w")
 State := false
 HD := false
 ;Interface
+Gui, +AlwaysOnTop
 Gui, Add, Text, 	x80 y0, 								Choose resolution
 Gui, Add, Button, 	x0 y20 		h80 w250	gResolutionHD,	HD
 Gui, Add, Button, 	x0 y100 	h80 w250	gResolution4K,	4k
