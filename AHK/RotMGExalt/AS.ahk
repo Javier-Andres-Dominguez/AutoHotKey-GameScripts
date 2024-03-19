@@ -1,5 +1,4 @@
-;This program is an aimbot so you can focus in dodging projectiles. This is oriented to 4k pixeled monitor, in the future I´ll add an option for 1920*1080. Center your hero and don´t rotate the screen. The map has to be zoomed max in.
-#SingleInstance force
+﻿#SingleInstance force
 #Persistent
 #include <AutoHotInterception>
 SetBatchLines, -1
@@ -13,14 +12,17 @@ global Green := "0x37C278"
 global Orange := "0x0E72E3"
 global Black := "0x000000"
 global Priest := false
+global Kensei := false
 ;Interface
+Gui, +AlwaysOnTop
 Gui, Font, s60
-Gui, Add, Text, 	x90 y60 	h80 w70		vStatus, 			X
+Gui, Add, Text, 	x90 y40 	h80 w70		vStatus, 			X
 Gui, Font, s20
-Gui, Add, Checkbox, x65 y160 	h20 w90 	vPriestMarked		gPriestSelector,		Priest
+Gui, Add, Checkbox, x65 y130 	h20 w90 	vPriestMarked		gPriestSelector,		Priest
+Gui, Add, Checkbox, x65 y160 	h20 w110 	vKenseiMarked		gKenseiSelector,		Kensei
 Gui, Add, Text, 	x10 y200 	h80 w120		vXText, 		X
 Gui, Add, Text, 	x150 y200 	h80 w120		vYText, 		Y
-Gui, Show, 			x5760 y550	h250 w250, 					ROTGM
+Gui, Show, 			x5760 y1050	h250 w250, 					ROTGM
 Suspend
 ;3480X 367Y Center of you in the map 35X 33Y
 ;1560X 1038Y Center of you in the screen
@@ -49,8 +51,13 @@ Loop{
 		;Closest enemies
 		PixelSearch, EnemyX, EnemyY, 3445, 334, 3515, 400, %Red%, 1, Fast
 		if(EnemyX!=null){	;If it finds an enemy:
-			VectorX := (EnemyX-3480+7)*170.71
-			VectorY := (EnemyY-367+7)*305.74
+			if(Kensei){
+				VectorX := ((EnemyX-3480+7)*170.71)*1.5
+				VectorY := ((EnemyY-367+7)*305.74)*1.5
+			}else{
+				VectorX := (EnemyX-3480+7)*170.71
+				VectorY := (EnemyY-367+7)*305.74
+			}
 			XAim := VectorX+26632
 			GuiControl,, XText, 	%EnemyX%
 			YAim := VectorY+31736
@@ -61,8 +68,13 @@ Loop{
 			;Close enemies
 			PixelSearch, EnemyX, EnemyY, 3410, 301, 3550, 433, %Red%, 1, Fast
 			if(EnemyX!=null){
-				VectorX := (EnemyX-3480+7)*170.71
-				VectorY := (EnemyY-367+7)*305.74
+				if(Kensei){
+					VectorX := ((EnemyX-3480+7)*170.71)*1.5
+					VectorY := ((EnemyY-367+7)*305.74)*1.5
+				}else{
+					VectorX := (EnemyX-3480+7)*170.71
+					VectorY := (EnemyY-367+7)*305.74
+				}
 				XAim := VectorX+26632
 				GuiControl,, XText, 	%EnemyX%
 				YAim := VectorY+31736
@@ -72,8 +84,13 @@ Loop{
 				;Closer enemies
 				PixelSearch, EnemyX, EnemyY, 3375, 268, 3585, 466, %Red%, 1, Fast
 				if(EnemyX!=null){	;If it finds an enemy:
-					VectorX := (EnemyX-3480+7)*170.71
-					VectorY := (EnemyY-367+7)*305.74
+					if(Kensei){
+						VectorX := ((EnemyX-3480+7)*170.71)*1.25
+						VectorY := ((EnemyY-367+7)*305.74)*1.25
+					}else{
+						VectorX := (EnemyX-3480+7)*170.71
+						VectorY := (EnemyY-367+7)*305.74
+					}
 					XAim := VectorX+26632
 					GuiControl,, XText, 	%EnemyX%
 					YAim := VectorY+31736
@@ -109,11 +126,25 @@ return
 PriestSelector:
 GuiControlGet, PriestMarked
 Priest := PriestMarked
+GuiControl,, KenseiMarked, 0
+return
+
+KenseiSelector:
+GuiControlGet, KenseiMarked
+Kensei := KenseiMarked
+GuiControl,, PriestMarked, 0
 return
 
 $RButton::
 Click, Right
-Send {v}
+if(Kensei){
+	PixelGetColor, HalfMana, 3300, 1053
+	if(HalfMana!="0xDA815D"){
+		Send {v}
+	}
+}else{
+	Send {v}
+}
 return
 */
 
