@@ -6,7 +6,7 @@ Dva := "Dva.png", Doomfist := "Doomfist.png", JunkerQueen := "JunkerQueen.png", 
 
 Ashe := "Ashe.png", Bastion := "Bastion.png", Cassidy := "Cassidy.png", Echo := "Echo.png", Genji := "Genji.png", Hanzo := "Hanzo.png",
 Junkrat := "Junkrat.png", Mei := "Mei.png", Pharah := "Pharah.png", Reaper := "Reaper.png", Sojourn := "Sojourn.png", Soldado76 := "Soldado76.png",
-Sombra := "Sombra.png",Symmetra := "Symmetra.png", Torbjorn := "Torbjorn.png", Tracer := "Tracer.png", Widowmaker := "Widowmaker.png"
+Sombra := "Sombra.png",Symmetra := "Symmetra.png", Torbjorn := "Torbjorn.png", Tracer := "Tracer.png", Venture := "Venture.png", Widowmaker := "Widowmaker.png"
 
 Ana := "Ana.png", Baptiste := "Baptiste.png", Brigitte := "Brigitte.png", Illari := "Illari.png", Kiriko := "Kiriko.png", Lifeweaver := "Lifeweaver.png", Lucio := "Lucio.png", Mercy := "Mercy.png",
 Moira := "Moira.png", Zenyatta := "Zenyatta.png"
@@ -40,14 +40,15 @@ Gui, Add, Picture, 	vJunkratPct 	x700 y300 	w50 h50		gJunkratBtn, 		%Path%%Junkr
 Gui, Add, Picture, 	vMeiPct 		x750 y300 	w50 h50		gMeiBtn, 			%Path%%Mei%
 Gui, Add, Picture, 	vPharahPct 		x800 y300 	w50 h50		gPharahBtn, 		%Path%%Pharah%
 
-Gui, Add, Picture, 	vReaperPct 		x425 y350 	w50 h50		gReaperBtn, 		%Path%%Reaper%
-Gui, Add, Picture, 	vSojournPct 	x475 y350 	w50 h50		gSojournBtn, 		%Path%%Sojourn%
-Gui, Add, Picture, 	vSoldado76Pct 	x525 y350 	w50 h50		gSoldado76Btn, 		%Path%%Soldado76%
-Gui, Add, Picture, 	vSombraPct 		x575 y350 	w50 h50		gSombraBtn, 		%Path%%Sombra%
-Gui, Add, Picture, 	vSymmetraPct 	x625 y350 	w50 h50		gSymmetraBtn, 		%Path%%Symmetra%
-Gui, Add, Picture, 	vTorbjornPct 	x675 y350 	w50 h50		gTorbjornBtn, 		%Path%%Torbjorn%
-Gui, Add, Picture, 	vTracerPct 		x725 y350 	w50 h50		gTracerBtn, 		%Path%%Tracer%
-Gui, Add, Picture, 	vWidowmakerPct 	x775 y350 	w50 h50		gWidowmakerBtn, 	%Path%%Widowmaker%
+Gui, Add, Picture, 	vReaperPct 		x400 y350 	w50 h50		gReaperBtn, 		%Path%%Reaper%
+Gui, Add, Picture, 	vSojournPct 	x450 y350 	w50 h50		gSojournBtn, 		%Path%%Sojourn%
+Gui, Add, Picture, 	vSoldado76Pct 	x500 y350 	w50 h50		gSoldado76Btn, 		%Path%%Soldado76%
+Gui, Add, Picture, 	vSombraPct 		x550 y350 	w50 h50		gSombraBtn, 		%Path%%Sombra%
+Gui, Add, Picture, 	vSymmetraPct 	x600 y350 	w50 h50		gSymmetraBtn, 		%Path%%Symmetra%
+Gui, Add, Picture, 	vTorbjornPct 	x650 y350 	w50 h50		gTorbjornBtn, 		%Path%%Torbjorn%
+Gui, Add, Picture, 	vTracerPct 		x700 y350 	w50 h50		gTracerBtn, 		%Path%%Tracer%
+Gui, Add, Picture, 	vVenturePct 	x750 y350 	w50 h50		gVentureBtn, 		%Path%%Venture%
+Gui, Add, Picture, 	vWidowmakerPct 	x800 y350 	w50 h50		gWidowmakerBtn, 	%Path%%Widowmaker%
 
 Gui, Add, Picture, 	vAnaPct 		x900 y300 	w50 h50		gAnaBtn, 			%Path%%Ana%
 Gui, Add, Picture, 	vBaptistePct 	x950 y300 	w50 h50		gBaptisteBtn, 		%Path%%Baptiste%
@@ -205,6 +206,10 @@ return
 TracerBtn:
 GuiControl,, MyHeroPct, %Path%%Tracer%
 StopAllScriptsAndStartOwn(Tracer)
+return
+VentureBtn:
+GuiControl,, MyHeroPct, %Path%%Venture%
+StopAllScriptsAndStartOwn(Venture)
 return
 WidowmakerBtn:
 GuiControl,, MyHeroPct, %Path%%Widowmaker%
