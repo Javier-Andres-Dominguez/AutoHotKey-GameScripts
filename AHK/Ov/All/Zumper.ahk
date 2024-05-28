@@ -1,8 +1,8 @@
-﻿State := false
+﻿State := true
 Gui, +AlwaysOnTop
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Jumper
+Gui, Show, 			x6135 y1200	h250 w250, 					Jumper
 return
 
 $Enter::
@@ -50,10 +50,6 @@ MouseMove, 2075, 1215
 Click
 return
 
-$F3::
-Reload
-return
-
 $F2::
 Suspend
 if(State){
@@ -65,5 +61,5 @@ if(State){
 }
 return
 
-$F1::
+GuiClose:
 ExitApp

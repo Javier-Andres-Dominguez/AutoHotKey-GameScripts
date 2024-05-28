@@ -8,29 +8,31 @@ global mouseId := AHI.GetMouseId(0x1BCF, 0x08B8)
 stdout := FileOpen("*", "w")
 global LBDown := false
 global mouseDistance := 2
-global mouseLoop := 0
+global hardRecoil := false
 AHI.SubscribeMouseButton(mouseId, 0, true, Func("LClick"), true)
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
-global CurrentState := true
+global CurrentState := false
 Gui, +AlwaysOnTop
 Gui, Font, s60
-Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		X
 Gui, Show, 			x5760 y1200	h250 w250, 					Soldier 76
+Suspend
 return
+
+changeRecoil(){
+    if(LBDown){
+        hardRecoil := true
+    }
+}
 
 moveDown(){
     Click, down
+    SetTimer, changeRecoil, 444
     while(LBDown){
-        if(CurrentState){
-            if(GetKeyState("Space", "P")){
-                Send {Space}
-            }
-            AHI.Instance.SendMouseMoveRelative(mouseId, 0, mouseDistance)
-            mouseLoop += 15
-            sleep 1
-            if(mouseLoop >= 400){
-                mouseDistance := 6
-            }
+        AHI.Instance.SendMouseMoveRelative(mouseId, 0, mouseDistance)
+        sleep 1
+        if(hardRecoil){
+            mouseDistance := 6
         }
     }
 }
@@ -38,13 +40,18 @@ moveDown(){
 LClick(state) {
     if (state) {
         LBDown := true
-        ;Send {MButton}
-        SetTimer, moveDown, -1
-    }else
+        if(!CurrentState){
+            Click, Down
+        }else{
+            ;Send {MButton}
+            SetTimer, moveDown, -1
+        }
+    }else{
         LBDown := false
         Click, up
-        mouseLoop := 0
-        mouseDistance := 1
+        mouseDistance := 2
+        hardRecoil := false
+    }
 }
 
 Boost(){
@@ -66,8 +73,21 @@ LateralClick(state){
     }
 }
 
+CloseAll(){
+    ;closes all other scripts
+    DetectHiddenWindows, On
+    WinGet, AHKList, List, ahk_class AutoHotkey
+    Loop, %AHKList%
+    {
+        ID := AHKList%A_Index%
+        If (ID <> A_ScriptHwnd)
+            WinClose, ahk_id %ID%
+    }
+}
+
 $Enter::
 return
+*/
 
 $x::
 Send {q}
@@ -76,22 +96,9 @@ stdout.Write("Ulting`n")
 stdout.Read()
 return
 
-$Space::
-while(GetKeyState("Space", "P")){
-    Send {Space}
-    Sleep 25
-    if(GetKeyState("V", "P")){
-        Send {v}
-    }
-    if(GetKeyState("c", "P")){
-        Send {c}
-    }
-}
-return
-
 $RShift::
 while(GetKeyState("RShift", "P")){
-    MouseMove, 1780, 1800
+    MouseMove, 1750, 1800
     Send {LButton}
 }
 return
@@ -105,24 +112,29 @@ MouseMove, 2050, 1225
 Click
 CurrentState := false
 GuiControl,, Status, 	X
+CloseAll()
 Suspend
-return
-
-$F3::
-Reload
 return
 
 $F2::
 Suspend
 if(CurrentState){
+    CloseAll()
 	CurrentState := false
 	GuiControl,, Status, 	X
     return
 }else{
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperJumper.ahk
 	CurrentState := true
 	GuiControl,, Status, 	O
     return
 }
 
+GuiClose:
+CloseAll()
+ExitApp
+
+
 $F1::
+CloseAll()
 ExitApp

@@ -8,11 +8,12 @@ global mouseId := AHI.GetMouseId(0x1BCF, 0x08B8)
 stdout := FileOpen("*", "w")
 AHI.SubscribeMouseButton(mouseId, 4, true, Func("LateralClick"), true)
 AHI.SubscribeMouseButton(mouseId, 3, true, Func("LateralClickk"), true)
-State := true
+State := false
 Gui, +AlwaysOnTop
 Gui, Font, s60
-Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		O
-Gui, Show, 			x5760 y550	h250 w250, 					Bastion
+Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		X
+Gui, Show, 			x5760 y1147	h250 w250, 					Bastion
+Suspend
 return
 
 BoostYou(){
@@ -48,40 +49,19 @@ LateralClickk(state){
     }
 }
 
+CloseAll(){
+    ;closes all other scripts
+    DetectHiddenWindows, On
+    WinGet, AHKList, List, ahk_class AutoHotkey
+    Loop, %AHKList%
+    {
+        ID := AHKList%A_Index%
+        If (ID <> A_ScriptHwnd)
+            WinClose, ahk_id %ID%
+    }
+}
+
 $Enter::
-return
-
-$c::
-while(GetKeyState("c","P")){
-	Send {c}
-	Sleep 50
-	if(GetKeyState("Space", "P")){
-		Send {Space}
-	}
-}
-return
-
-$v::
-while(GetKeyState("v","P")){
-	Send {v}
-	Sleep 50
-	if(GetKeyState("Space", "P")){
-		Send {Space}
-	}
-}
-return
-
-$Space::
-while(GetKeyState("Space", "P")){
-    Send {Space}
-    Sleep 25
-    if(GetKeyState("V", "P")){
-        Send {v}
-    }
-    if(GetKeyState("c", "P")){
-        Send {c}
-    }
-}
 return
 
 $RShift::
@@ -100,6 +80,7 @@ MouseMove, 2050, 1225
 Click
 State := false
 GuiControl,, Status, 	X
+CloseAll()
 Suspend
 return
 
@@ -109,14 +90,22 @@ return
 
 $F2::
 Suspend
-if(State){
-	State := false
+if(CurrentState){
+    CloseAll()
+	CurrentState := false
 	GuiControl,, Status, 	X
+    return
 }else{
-	State := true
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperJumper.ahk
+	CurrentState := true
 	GuiControl,, Status, 	O
+    return
 }
-return
+
+GuiClose:
+CloseAll()
+ExitApp
 
 $F1::
+CloseAll()
 ExitApp

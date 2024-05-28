@@ -1,8 +1,8 @@
-﻿State := false
+State := false
 Gui, +AlwaysOnTop
 Gui, Font, s60
 Gui, Add, Text, 	x90 y80 	h80 w70		vStatus, 		X
-Gui, Show, 			x5760 y1200	h250 w250, 					Doomfist
+Gui, Show, 			x5760 y1147	h250 w250, 					Venture
 Suspend
 return
 
@@ -21,16 +21,13 @@ CloseAll(){
 $Enter::
 return
 
-$e::
-while(GetKeyState("e","P")){
-	Send {e}
-	Sleep 50
-}
+$RButton::
+Click
 return
 
 $RShift::
 while(GetKeyState("RShift", "P")){
-	MouseMove, 625, 1650
+	MouseMove, 2350, 1800
 	Send {LButton}
 }
 return
@@ -49,7 +46,14 @@ Suspend
 return
 
 $F3::
-Reload
+Suspend
+if(State){
+	State := false
+	GuiControl,, Status, 	O
+}else{
+	State := true
+	GuiControl,, Status, 	X
+}
 return
 
 $F2::
@@ -60,7 +64,7 @@ if(CurrentState){
 	GuiControl,, Status, 	X
     return
 }else{
-    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperDoomfist.ahk
+    Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperJumper.ahk
 	CurrentState := true
 	GuiControl,, Status, 	O
     return
