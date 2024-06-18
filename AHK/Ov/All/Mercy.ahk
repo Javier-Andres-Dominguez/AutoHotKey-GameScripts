@@ -86,6 +86,10 @@ Send {RButton Up}
 Send {LButton Down}
 Loop{	;Scan in the screen until you vinculate to an Ally
 	PixelGetColor firstHpColor, xFirstHpColor, yFirstHpColor
+	GuiControl,, LastHpPixelColor, %firstHpColor%
+	if(!GetKeyState("LButton", "P")){
+		return
+	}
 }
 Until (firstHpColor==White || SubStr(firstHpColor, 1, 3)==Bastion)	;Bastion is weird, he has his own hp color
 
@@ -175,6 +179,7 @@ if(State){
 	GuiControl, Hide, HealingLaser
 	GuiControl, Show, Status
 	Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperMercy.ahk
+	Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperRes.ahk
 }
 return
 
