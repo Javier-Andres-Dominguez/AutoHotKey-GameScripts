@@ -178,8 +178,8 @@ if(State){
 	GuiControl, Hide, BoostingLaserr
 	GuiControl, Hide, HealingLaser
 	GuiControl, Show, Status
-	Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperMercy.ahk
-	Run, C:\Users\Ordenador-de-yo\Downloads\AHK\Portatil\Scripts\Ov\All\HelperRes.ahk
+	Run, YourPath\HelperMercy.ahk
+	Run, YourPath\HelperRes.ahk
 }
 return
 
